@@ -20,6 +20,8 @@ async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 def run_bot():
     app = ApplicationBuilder().token(TOKEN).build()
+    import asyncio
+    asyncio.set_event_loop(asyncio.new_event_loop())
     app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, echo))
     app.run_polling()
